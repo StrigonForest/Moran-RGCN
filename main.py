@@ -10,9 +10,9 @@ import torch.nn.functional as F
 from torch.optim.lr_scheduler import ReduceLROnPlateau
 from torch_geometric.utils import is_undirected
 
-from Landslide_Task.model_compare import run_RandomForest, run_SVM, run_LR, GCN
-from Landslide_Task.moran import apply_moran_mutli_graph
-from Landslide_Task.utils import (
+from model_compare import run_RandomForest, run_SVM, run_LR, GCN
+from moran import apply_moran_mutli_graph
+from utils import (
     compute_acc,
     compute_auc,
     compute_prec,
@@ -250,8 +250,8 @@ def run_experiment(
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--content", type=str, help="Path to node/feature CSV",
-                        default="../../datasets/Yaan/Yaan_content.csv")
-    parser.add_argument("--edge_list", type=str, help="Path to edge list CSV", default="../../datasets"
+                        default="../datasets/Yaan/Yaan_content.csv")
+    parser.add_argument("--edge_list", type=str, help="Path to edge list CSV", default="../datasets"
                                                                                        "/Yaan/Yaan_edge_list_AO_A1.csv")
     parser.add_argument("--seed", type=int, default=12)
     # Model hyper‑parameters
@@ -276,7 +276,7 @@ if __name__ == "__main__":
 
     set_seed(args.seed)
 
-    split_indices = get_split_indices(content_filename=args.content, edge_list_filename='../../datasets/Yaan/Yaan_edge_list_queen.csv', seed=args.seed)
+    split_indices = get_split_indices(content_filename=args.content, edge_list_filename='../datasets/Yaan/Yaan_edge_list_queen.csv', seed=args.seed)
 
     run_experiment(
         content_filename=args.content,
